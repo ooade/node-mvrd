@@ -64,7 +64,7 @@ app.get('/api/:id', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-	res.end(`usage: ${req.headers.host}://api/[plate_number]`)
+	res.end(`usage: https://${req.headers.host}/api/[plate_number]`)
 })
 
 app.listen(PORT, () => {
