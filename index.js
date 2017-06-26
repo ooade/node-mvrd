@@ -6,7 +6,7 @@ const app = express()
 
 const URL_TO_CRAWL = 'http://lsmvaapvs.org'
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 app.get('/api/:id', (req, res) => {
 	fetch(`${URL_TO_CRAWL}/search.php?vpn=${req.params.id}`)
@@ -24,7 +24,7 @@ app.get('/api/:id', (req, res) => {
 
 			let count = 0
 
-			$('.col-sm-8').filter(function() {
+			$('.col-sm-8').map(function() {
 				let data = $(this).text()
 
 				switch (count) {
@@ -47,7 +47,11 @@ app.get('/api/:id', (req, res) => {
 				count++
 			})
 
-			res.send({
+			if (!plateNumber) {
+				return res.end('Invalid Plate Number!')
+			}
+
+			res.json({
 				color,
 				model,
 				plate_number: plateNumber,
@@ -59,6 +63,10 @@ app.get('/api/:id', (req, res) => {
 		})
 })
 
+app.get('*', (req, res) => {
+	res.end('FORMAT > api/[plate_number]')
+})
+
 app.listen(PORT, () => {
-	console.log('> App running on PORT 3000')
+	console.log('> App running on PORT ' + PORT)
 })
