@@ -1,0 +1,13 @@
+{
+	"name": "node-mvrd",
+	"version": "0.1.0",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"cheerio": "^1.0.0-rc.1",
+		"express": "^4.15.3",
+		"isomorphic-unfetch": "^1.0.0"
+	}
+}
